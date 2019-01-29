@@ -28,5 +28,9 @@ public class AccountMapRepository implements AccountRepository{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public int getMapSize() {
+		return account.size();
+	}
 
 }

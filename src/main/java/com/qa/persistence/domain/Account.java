@@ -1,6 +1,10 @@
 package com.qa.persistence.domain;
 
+import com.qa.utilities.JSONUtil;
+
 public class Account {
+	
+	JSONUtil json = new JSONUtil();
 	
 	private String firstName;
 	
@@ -41,5 +45,9 @@ public class Account {
 		this.accountNumber = accountNumber;
 	}
 	
+	@Override
+	public String toString() {
+		return json.getJSONForObject(this);
+	}
 	
 }
