@@ -4,7 +4,7 @@ import com.qa.utilities.JSONUtil;
 
 public class Account {
 	
-	JSONUtil json = new JSONUtil();
+	private JSONUtil json = new JSONUtil();
 	
 	private String firstName;
 	

@@ -12,14 +12,17 @@ import com.qa.persistence.repository.AccountMapRepository;
 
 public class AccountServiceTest {
 
-	AccountMapRepository mapRepo;
-	JSONUtil json;
-	String jSONAccount;
+	private AccountMapRepository mapRepo;
+	private JSONUtil json = new JSONUtil();
+	private String jSONAccount;
 
 	@Before
 	public void setup() {
 		mapRepo = new AccountMapRepository();
-		jSONAccount = (new Account("FirstName", "LastName", 123456)).toString();
+		Account account = new Account("FirstName", "LastName", 123456);
+		System.out.println(json.getJSONForObject(account));
+		
+		
 	}
 
 	@Test
@@ -37,10 +40,8 @@ public class AccountServiceTest {
 
 	@Test
 	public void removeAccountTest() {
-		Object account = new Account("FirstName", "LastName", 123456);
-		String jSONAccount = json.getJSONForObject(account);
 		mapRepo.createAccount(jSONAccount);
-		mapRepo.deleteAccount((long) 1);
+		mapRepo.deleteAccount((long) 0);
 		assertEquals(0, mapRepo.getMapSize());
 
 	}
@@ -68,6 +69,7 @@ public class AccountServiceTest {
 
 	@Test
 	public void accountConversionToJSONTestWithEmptyMap() {
+		
 		
 	}
 

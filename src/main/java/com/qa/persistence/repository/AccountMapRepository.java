@@ -8,30 +8,31 @@ import com.qa.utilities.JSONUtil;
 
 public class AccountMapRepository implements AccountRepository{
 	
-	Long id = (long) 0;
-	Map<Long, Account> account = new HashMap<>();
-	JSONUtil gSON = new JSONUtil();
-	Account acc;
-	StringBuilder accountsString;
+	private Long id =  0L;
+	private Map<Long, Account> account = new HashMap<>();
+	private JSONUtil gSON = new JSONUtil();
+	private Account acc;
+	private StringBuilder accountsString;
 
 	public String getAllAccounts() {
 		
-		for (Long id: this.account.keySet()) {
-			accountsString.append(this.account.get(id).toString());
+		for (Map.Entry<Long, Account> entry : this.account.entrySet()) {
+			accountsString.append(entry.getValue().toString());
 		}
 		return accountsString.toString();
 	}
 
 	public String createAccount(String account) {
 		id++;
-		acc = gSON.getObjectForJSON(account, acc.getClass());
+		acc = gSON.getObjectForJSON(account, Account.class);
 		this.account.put(id, acc);
 		return account;
 	}
 
 	public String deleteAccount(Long id) {
+		String output = (this.account.get(id)).toString();
 		this.account.remove(id);
-		return this.account.get(id).toString();
+		return output;
 	}
 
 	public String updateAccount(Long id, String account) {
