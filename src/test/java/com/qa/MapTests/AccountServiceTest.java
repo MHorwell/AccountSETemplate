@@ -91,11 +91,21 @@ public class AccountServiceTest {
 
 	@Test
 	public void getCountForFirstNamesInAccountWhenOne() {
+		mapRepo.createAccount(jSONAccount);
+		mapRepo.createAccount("{\"firstName\":\"first\",\"lastName\":\"last\",\"accountNumber\":123}");
+		
+		assertEquals(1, mapRepo.getCountByFirstName("first"));
 
 	}
 
 	@Test
 	public void getCountForFirstNamesInAccountWhenMult() {
+		mapRepo.createAccount(jSONAccount);
+		mapRepo.createAccount(jSONAccount2);
+		mapRepo.createAccount("{\"firstName\":\"first\",\"lastName\":\"last\",\"accountNumber\":123}");
+		
+		assertEquals(2, mapRepo.getCountByFirstName("FirstName"));
+		
 
 	}
 

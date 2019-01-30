@@ -51,4 +51,14 @@ public class AccountMapRepository implements AccountRepository{
 		return account.size();
 	}
 
+	public int getCountByFirstName(String string) {
+		int count = 0;
+		for (Map.Entry<Long, Account> entry : this.account.entrySet()) {
+			if (entry.getValue().getFirstName().equals(string)) {
+				count ++;
+			}
+		}
+		return count;
+	}
+
 }
