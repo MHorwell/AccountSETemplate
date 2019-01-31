@@ -1,11 +1,15 @@
 package com.qa.business;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
+import static javax.transaction.Transactional.TxType.REQUIRED;
+import static javax.transaction.Transactional.TxType.SUPPORTS;
 
 import com.qa.persistence.domain.Account;
 import com.qa.persistence.repository.AccountRepository;
 import com.qa.utilities.JSONUtil;
 
+@Transactional(SUPPORTS)
 public class AccountRulesImpl implements AccountRules {
 	
 	@Inject
@@ -17,9 +21,10 @@ public class AccountRulesImpl implements AccountRules {
 	@Override
 	public String getAllAccounts() {
 		return repo.getAllAccounts();
-	}
+	} 
 
 	@Override
+	@Transactional(REQUIRED)
 	public String createAccount(String account) {
 		Account acc = util.getObjectForJSON(account, Account.class);
 		if (acc.getAccountNumber() == 9) {
@@ -29,11 +34,13 @@ public class AccountRulesImpl implements AccountRules {
 	}
 
 	@Override
+	@Transactional(REQUIRED)
 	public String deleteAccount(Long id) {
 		return repo.deleteAccount(id);
 	}
 
 	@Override
+	@Transactional(REQUIRED)
 	public String updateAccount(Long id, String account) {
 		return repo.updateAccount(id, account);
 	}
