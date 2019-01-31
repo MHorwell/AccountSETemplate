@@ -10,14 +10,9 @@ public class AccountMapRepository implements AccountRepository{
 	
 	private Map<Long, Account> account = new HashMap<>();
 	private JSONUtil json = new JSONUtil();
-	private StringBuilder accountsString;
 
 	public String getAllAccounts() {
-		
-		for (Map.Entry<Long, Account> entry : this.account.entrySet()) {
-			accountsString.append(entry.getValue().toString());
-		}
-		return accountsString.toString();
+		return json.getJSONForObject(account.values());
 	}
 
 	public String createAccount(String account) {
