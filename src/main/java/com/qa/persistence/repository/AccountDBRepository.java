@@ -5,15 +5,16 @@ import javax.transaction.Transactional;
 import com.qa.persistence.domain.Account;
 import com.qa.utilities.JSONUtil;
 
-import static javax.transaction.Transactional.TxType.SUPPORTS;
-
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import static javax.transaction.Transactional.TxType.REQUIRED;
+import static javax.transaction.Transactional.TxType.SUPPORTS;
 
+@Default
 @Transactional(SUPPORTS)
 public class AccountDBRepository implements AccountRepository {
 	
