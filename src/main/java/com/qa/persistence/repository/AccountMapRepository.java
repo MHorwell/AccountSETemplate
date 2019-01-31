@@ -1,9 +1,9 @@
 package com.qa.persistence.repository;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.enterprise.inject.Alternative;
+import javax.inject.Inject;
 
 import com.qa.persistence.domain.Account;
 import com.qa.utilities.JSONUtil;
@@ -11,18 +11,21 @@ import com.qa.utilities.JSONUtil;
 @Alternative
 public class AccountMapRepository implements AccountRepository{
 	
-	private Map<Long, Account> account = new HashMap<>();
-	private JSONUtil json = new JSONUtil();
+	@Inject
+	private Map<Long, Account> account;
+	
+	@Inject
+	private JSONUtil util;
 
 	public String getAllAccounts() {
-		return json.getJSONForObject(account.values());
+		return util.getJSONForObject(account.values());
 	}
 
 	public String createAccount(String account) {
-		Account acc = json.getObjectForJSON(account, Account.class);
+		Account acc = util.getObjectForJSON(account, Account.class);
 		long id = (long) acc.getAccountNumber();
 		this.account.put(id, acc);
-		return null;
+		return "Account Created";
 	}
 
 	public Map<Long, Account> getAccount() {
@@ -40,7 +43,7 @@ public class AccountMapRepository implements AccountRepository{
 	}
 
 	public String updateAccount(Long id, String account) {
-		Account acc = json.getObjectForJSON(account, Account.class);
+		Account acc = util.getObjectForJSON(account, Account.class);
 		this.account.put(id, acc);
 		return this.account.get(id).toString();
 	}
