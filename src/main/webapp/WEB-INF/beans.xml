@@ -7,7 +7,7 @@
 
 	<!-- this is for the CDI and sorting out the injections and things -->
 
-	<alternatives>
+	<!-- <alternatives>
 		<class>com.qa.service.repository.AccountMapRepository</class>
-	</alternatives>
+	</alternatives> -->
 </beans>

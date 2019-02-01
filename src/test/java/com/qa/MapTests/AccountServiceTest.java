@@ -71,7 +71,7 @@ public class AccountServiceTest {
 	public void accountConversionToJSONTestWithEmptyMap() {
 		Account testAccount = new Account("first", "last", 123);
 		String accountString = json.getJSONForObject(testAccount);
-		assertEquals("{\"firstName\":\"first\",\"lastName\":\"last\",\"accountNumber\":123}", accountString);
+		assertEquals("{\"id\":0,\"firstName\":\"first\",\"lastName\":\"last\",\"accountNumber\":123}", accountString);
 	}
 
 	@Test
